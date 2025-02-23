@@ -16,7 +16,7 @@ spec:
       - name: trivia
         image: europe-north1-docker.pkg.dev/euphoric-hull-451714-q2/trivia-app/trivia-app-image:latest
         ports:
-        - containerPort: 8000
+        - containerPort: 7860
         command: [./script.sh]
 ---
 apiVersion: v1
