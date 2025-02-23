@@ -9,6 +9,6 @@ steps:
   - --filename=./kubernetes/deployment.yaml
   - --image=europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-app-image:latest
   - --location=europe-north1-a
-  - --cluster=cost-optimized-cluster-1
+  - --cluster=my-first-cluster-1
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
