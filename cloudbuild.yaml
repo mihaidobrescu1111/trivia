@@ -22,3 +22,17 @@ steps:
   - --cluster=my-first-cluster-1
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+availableSecrets:
+  secretManager:
+  - versionName: projects/179112734170/secrets/HF_CLIENT_ID
+    env: 'HF_CLIENT_ID'
+  - versionName: projects/179112734170/secrets/HF_CLIENT_SECRET
+    env: 'HF_CLIENT_SECRET'
+  - versionName: projects/179112734170/secrets/HF_REDIRECT_URI
+    env: 'HF_REDIRECT_URI'
+  - versionName: projects/179112734170/secrets/GOOGLE_CLIENT_ID
+    env: 'GOOGLE_CLIENT_ID'
+  - versionName: projects/179112734170/secrets/GOOGLE_CLIENT_SECRET
+    env: 'GOOGLE_CLIENT_SECRET'
+  - versionName: projects/179112734170/secrets/GOOGLE_REDIRECT_URI
+    env: 'GOOGLE_REDIRECT_URI'
