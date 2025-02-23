@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: trivia-app
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: trivia-app
@@ -17,10 +18,42 @@ spec:
         ports:
         - containerPort: 7860
         command: ["uvicorn", "app:app", "--port", "7860", "--host", "0.0.0.0"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trivia-server1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trivia-server1
+  template:
+    metadata:
+      labels:
+        app: trivia-server1
+    spec:
+      containers:
       - name: trivia-server1
         image: europe-north1-docker.pkg.dev/euphoric-hull-451714-q2/trivia-app/trivia-server1-image:latest
         ports:
         - containerPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trivia-server2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trivia-server2
+  template:
+    metadata:
+      labels:
+        app: trivia-server2
+    spec:
+      containers:
       - name: trivia-server2
         image: europe-north1-docker.pkg.dev/euphoric-hull-451714-q2/trivia-app/trivia-server2-image:latest
         ports:
@@ -45,7 +78,7 @@ metadata:
   name: trivia-server1-service
 spec:
   selector:
-    app: trivia-app
+    app: trivia-server1
   ports:
     - protocol: TCP
       port: 8000
@@ -58,9 +91,9 @@ metadata:
   name: trivia-server2-service
 spec:
   selector:
-    app: trivia-app
+    app: trivia-server2
   ports:
     - protocol: TCP
       port: 7888
       targetPort: 7888
-  clusterIP: None 
+  clusterIP: None
