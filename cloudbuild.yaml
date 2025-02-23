@@ -1,0 +1,14 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia/trivia-app-image', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-app-image:latest']
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=./kubernetes/deployment.yaml
+  - --image=europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-app-image:latest
+  - --location=europe-north1-a
+  - --cluster=cost-optimized-cluster-1
+options:
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET

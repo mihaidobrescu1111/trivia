@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trivia-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: trivia-app
+  template:
+    metadata:
+      labels:
+        app: trivia-app
+    spec:
+      containers:
+      - name: trivia
+        image: europe-north1-docker.pkg.dev/euphoric-hull-451714-q2/trivia-app/trivia-app-image:latest
+        ports:
+        - containerPort: 8000
+        command: [./script.sh]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: trivia-app-service
+spec:
+  selector:
+    app: trivia-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 7860
+  type: LoadBalancer

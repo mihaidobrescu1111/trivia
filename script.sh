@@ -4,5 +4,4 @@
 
 sleep 5
 
-cd trivia
 uvicorn app:app --port 7860 --host 0.0.0.0
