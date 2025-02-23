@@ -4,10 +4,10 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/*
 
-RUN wget -q --show-progress https://huggingface.co/Mihaiii/shieldgemma-2b-Q5_K_M-GGUF/resolve/main/shieldgemma-2b-q5_k_m-imat.gguf
+RUN wget -q https://huggingface.co/Mihaiii/shieldgemma-2b-Q5_K_M-GGUF/resolve/main/shieldgemma-2b-q5_k_m-imat.gguf
 
 RUN chmod +x /llama-server shieldgemma-2b-q5_k_m-imat.gguf
 
 EXPOSE 8000
 
-CMD ["/llama-server", "-m", "./shieldgemma-2b-q5_k_m-imat.gguf", "-c", "8192", "-t", "4", "--port", "8000", "--host", "0.0.0.0", "-cb"]
+CMD ["-m", "./shieldgemma-2b-q5_k_m-imat.gguf", "-c", "8192", "-t", "4", "--port", "8000", "--host", "0.0.0.0", "-cb"]

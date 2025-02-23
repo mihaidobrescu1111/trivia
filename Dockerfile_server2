@@ -4,10 +4,10 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/*
 
-RUN wget -q --show-progress https://huggingface.co/bartowski/gemma-2-2b-it-GGUF/resolve/main/gemma-2-2b-it-Q5_K_M.gguf
+RUN wget -q https://huggingface.co/bartowski/gemma-2-2b-it-GGUF/resolve/main/gemma-2-2b-it-Q5_K_M.gguf
 
 RUN chmod +x /llama-server gemma-2-2b-it-Q5_K_M.gguf
 
 EXPOSE 7888
 
-CMD ["/llama-server", "-m", "./gemma-2-2b-it-Q5_K_M.gguf", "-c", "8192", "-t", "4", "--port", "7888", "--host", "0.0.0.0", "-cb"]
+CMD ["-m", "./gemma-2-2b-it-Q5_K_M.gguf", "-c", "8192", "-t", "4", "--port", "7888", "--host", "0.0.0.0", "-cb"]
