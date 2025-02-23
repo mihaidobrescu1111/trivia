@@ -63,8 +63,8 @@ Follow this JSON schema when providing the answer:
 {QUESTION_JSON_SCHEMA}
 """)
 
-TOPIC_CHECK_URL = "http://127.0.0.1:8000/completion"
-GEN_Q_URL =  "http://127.0.0.1:7888/completion"
+TOPIC_CHECK_URL = "http://trivia-server1-service:8000/completion"
+GEN_Q_URL =  "http://trivia-server2-service:7888/completion"
 headers = {
     "Content-Type": "application/json"
 }

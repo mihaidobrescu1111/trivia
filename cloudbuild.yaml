@@ -1,13 +1,23 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-app-image', '.']
+  args: ['build', '-f' , 'Dockerfile_app', '-t', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-app-image', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-app-image:latest']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-f' , 'Dockerfile_server1', '-t', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server1-image', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server1-image:latest']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-f' , 'Dockerfile_server2', '-t', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server2-image', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server2-image:latest']
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
   - --filename=./kubernetes/deployment.yaml
   - --image=europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-app-image:latest
+  - --image=europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server1-image:latest
+  - --image=europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server2-image:latest
   - --location=europe-north1-a
   - --cluster=my-first-cluster-1
 options:

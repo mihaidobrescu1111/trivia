@@ -1,0 +1,11 @@
+FROM ghcr.io/ggerganov/llama.cpp:server--b1-e09a800
+
+RUN apt-get update && apt-get install -y wget 
+
+RUN wget -q https://huggingface.co/bartowski/gemma-2-2b-it-GGUF/resolve/main/gemma-2-2b-it-Q5_K_M.gguf
+
+RUN chmod 777 .
+
+EXPOSE 7888
+
+CMD ./llama-server -m ./gemma-2-2b-it-Q5_K_M.gguf -c 8192 -t 4 --port 7888 --host 0.0.0.0 -cb
