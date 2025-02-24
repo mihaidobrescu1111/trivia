@@ -55,3 +55,4 @@ availableSecrets:
     env: 'GOOGLE_CLIENT_SECRET'
   - versionName: projects/179112734170/secrets/GOOGLE_REDIRECT_URI/versions/latest
     env: 'GOOGLE_REDIRECT_URI'
+timeout: "1200s"
