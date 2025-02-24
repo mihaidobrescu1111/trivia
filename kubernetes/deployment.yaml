@@ -18,6 +18,7 @@ spec:
         ports:
         - containerPort: 7860
         command: ["uvicorn", "app:app", "--port", "7860", "--host", "0.0.0.0"]
+        imagePullPolicy: Always
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -38,6 +39,7 @@ spec:
         image: europe-north1-docker.pkg.dev/euphoric-hull-451714-q2/trivia-app/trivia-server1-image:latest
         ports:
         - containerPort: 8000
+        imagePullPolicy: Always
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -58,6 +60,7 @@ spec:
         image: europe-north1-docker.pkg.dev/euphoric-hull-451714-q2/trivia-app/trivia-server2-image:latest
         ports:
         - containerPort: 7888
+        imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
