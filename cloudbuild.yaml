@@ -1,21 +1,21 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-f' , 'Dockerfile_app', '-t', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-app-image', '.']
-  env:
-    - 'HF_CLIENT_ID=$$HF_CLIENT_ID'
-    - 'HF_CLIENT_SECRET=$$HF_CLIENT_SECRET'
-    - 'HF_REDIRECT_URI=$$HF_REDIRECT_URI'
-    - 'GOOGLE_CLIENT_ID=$$GOOGLE_CLIENT_ID'
-    - 'GOOGLE_CLIENT_SECRET=$$GOOGLE_CLIENT_SECRET'
-    - 'GOOGLE_REDIRECT_URI=$$GOOGLE_REDIRECT_URI'
+  args: ['build', '-f', 'Dockerfile_app', '-t', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-app-image', '.']
+  secretEnv:
+    - 'HF_CLIENT_ID'
+    - 'HF_CLIENT_SECRET'
+    - 'HF_REDIRECT_URI'
+    - 'GOOGLE_CLIENT_ID'
+    - 'GOOGLE_CLIENT_SECRET'
+    - 'GOOGLE_REDIRECT_URI'
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-app-image:latest']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-f' , 'Dockerfile_server1', '-t', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server1-image', '.']
+  args: ['build', '-f', 'Dockerfile_server1', '-t', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server1-image', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server1-image:latest']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-f' , 'Dockerfile_server2', '-t', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server2-image', '.']
+  args: ['build', '-f', 'Dockerfile_server2', '-t', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server2-image', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server2-image:latest']
 - name: "gcr.io/cloud-builders/gke-deploy"
