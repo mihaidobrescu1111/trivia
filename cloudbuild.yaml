@@ -31,15 +31,15 @@ options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
 availableSecrets:
   secretManager:
-  - versionName: projects/179112734170/secrets/HF_CLIENT_ID
+  - versionName: projects/179112734170/secrets/HF_CLIENT_ID/versions/latest
     env: 'HF_CLIENT_ID'
-  - versionName: projects/179112734170/secrets/HF_CLIENT_SECRET
+  - versionName: projects/179112734170/secrets/HF_CLIENT_SECRET/versions/latest
     env: 'HF_CLIENT_SECRET'
-  - versionName: projects/179112734170/secrets/HF_REDIRECT_URI
+  - versionName: projects/179112734170/secrets/HF_REDIRECT_URI/versions/latest
     env: 'HF_REDIRECT_URI'
-  - versionName: projects/179112734170/secrets/GOOGLE_CLIENT_ID
+  - versionName: projects/179112734170/secrets/GOOGLE_CLIENT_ID/versions/latest
     env: 'GOOGLE_CLIENT_ID'
-  - versionName: projects/179112734170/secrets/GOOGLE_CLIENT_SECRET
+  - versionName: projects/179112734170/secrets/GOOGLE_CLIENT_SECRET/versions/latest
     env: 'GOOGLE_CLIENT_SECRET'
-  - versionName: projects/179112734170/secrets/GOOGLE_REDIRECT_URI
+  - versionName: projects/179112734170/secrets/GOOGLE_REDIRECT_URI/versions/latest
     env: 'GOOGLE_REDIRECT_URI'
