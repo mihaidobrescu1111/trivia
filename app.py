@@ -17,6 +17,8 @@ import env_vars
 import sqlite3
 from datasets import load_dataset
 
+VERSION = "2.7.6"
+
 logging.basicConfig(level=logging.DEBUG)
 
 SIGN_IN_TEXT = """Only logged users can play. Press on either "Sign in with HuggingFace" or "Sign in with Google"."""
@@ -661,6 +663,7 @@ async def get(session, app, request):
         current_question_info,
         Div(Div(id="past_topic"), cls='past_topic_wrapper', style='padding-top: 10px;'),
         Div(bid_form(), cls='bid_wrapper'),
+        Div(P(f"VERSION: {VERSION}"), style="padding: 200px; display: inline-flex; justify-content: center; align-items: center; text-align: center;"),
         cls="middle-panel"
     )
     right_panel = Div(
