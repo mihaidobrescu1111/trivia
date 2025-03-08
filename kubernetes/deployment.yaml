@@ -19,6 +19,7 @@ spec:
         - containerPort: 7860
         command: ["uvicorn", "app:app", "--port", "7860", "--host", "0.0.0.0"]
         imagePullPolicy: Always
+---
 apiVersion: v1
 kind: Service
 metadata:
