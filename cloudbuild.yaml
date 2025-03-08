@@ -22,23 +22,13 @@ steps:
     - .
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-app-image:latest']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-f', 'Dockerfile_server1', '-t', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server1-image:latest', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server1-image:latest']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-f', 'Dockerfile_server2', '-t', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server2-image:latest', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server2-image:latest']
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
   - --filename=./kubernetes/deployment.yaml
   - --image=europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-app-image:latest
-  - --image=europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server1-image:latest
-  - --image=europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-server2-image:latest
   - --location=europe-north1-a
-  - --cluster=my-first-cluster-1
+  - --cluster=trivia-cluster
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
 availableSecrets:
@@ -55,4 +45,4 @@ availableSecrets:
     env: 'GOOGLE_CLIENT_SECRET'
   - versionName: projects/179112734170/secrets/GOOGLE_REDIRECT_URI/versions/latest
     env: 'GOOGLE_REDIRECT_URI'
-timeout: 1200s
+timeout: 3600s
