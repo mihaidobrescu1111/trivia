@@ -17,7 +17,7 @@ import env_vars
 import sqlite3
 from datasets import load_dataset
 
-VERSION = "2.7.7"
+VERSION = "2.7.9"
 
 logging.basicConfig(level=logging.DEBUG)
 
