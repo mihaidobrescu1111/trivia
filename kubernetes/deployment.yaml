@@ -21,11 +21,11 @@ spec:
         imagePullPolicy: Always
         volumeMounts:
         - mountPath: /trivia-app/db
-          name: db-pv
+          name: trivia-db-pv
       volumes:
-      - name: db-pv
+      - name: trivia-db-pv
         persistentVolumeClaim:
-          claimName: db-pvc
+          claimName: trivia-db-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -43,7 +43,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: db-pvc
+  name: trivia-db-pvc
 spec:
   accessModes:
     - ReadWriteOnce
@@ -55,7 +55,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: db-pv
+  name: trivia-db-pv
 spec:
   capacity:
     storage: 5Gi
