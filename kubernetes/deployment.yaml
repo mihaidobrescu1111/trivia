@@ -20,7 +20,7 @@ spec:
         command: ["uvicorn", "--app-dir", "trivia-app", "app:app", "--port", "7860", "--host", "0.0.0.0"]
         imagePullPolicy: Always
         volumeMounts:
-        - mountPath: /app/db
+        - mountPath: /trivia-app/db
           name: db-pv
       volumes:
       - name: db-pv
