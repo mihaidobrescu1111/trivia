@@ -17,7 +17,7 @@ spec:
         image: europe-north1-docker.pkg.dev/euphoric-hull-451714-q2/trivia-app/trivia-app-image:latest
         ports:
         - containerPort: 7860
-        command: ["uvicorn", "app:app", "--port", "7860", "--host", "0.0.0.0"]
+        command: ["uvicorn", "--app-dir", "trivia-app", "app:app", "--port", "7860", "--host", "0.0.0.0"]
         imagePullPolicy: Always
         volumeMounts:
         - mountPath: /app/db
