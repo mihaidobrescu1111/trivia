@@ -64,5 +64,5 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: manual
   hostPath:
-    path: /mnt/data
+    path: /var/lib/trivia-app  
 ---
