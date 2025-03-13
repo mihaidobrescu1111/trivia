@@ -19,6 +19,13 @@ spec:
         - containerPort: 7860
         command: ["uvicorn", "app:app", "--port", "7860", "--host", "0.0.0.0"]
         imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: /app/db
+          name: db-pv
+      volumes:
+      - name: db-pv
+        persistentVolumeClaim:
+          claimName: db-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -32,3 +39,30 @@ spec:
       port: 80
       targetPort: 7860
   type: LoadBalancer
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: db-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: manual
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: db-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  hostPath:
+    path: /mnt/data
+---

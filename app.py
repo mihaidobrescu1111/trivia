@@ -17,13 +17,13 @@ import env_vars
 import sqlite3
 from datasets import load_dataset
 
-VERSION = "2.7.9"
+VERSION = "2.8.0"
 
 logging.basicConfig(level=logging.DEBUG)
 
 SIGN_IN_TEXT = """Only logged users can play. Press on either "Sign in with HuggingFace" or "Sign in with Google"."""
 
-db_path = f'{env_vars.DB_DIRECTORY}trivia.db'
+db_path = f'{env_vars.DB_DIRECTORY}/trivia.db'
 db = database(db_path)
 players = db.t.players
 trivias = db.t.trivias

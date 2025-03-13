@@ -9,8 +9,6 @@ steps:
     - 'GOOGLE_REDIRECT_URI'
   args:
     - build
-    - -f
-    - Dockerfile_app
     - -t
     - europe-north1-docker.pkg.dev/$PROJECT_ID/trivia-app/trivia-app-image:latest
     - --build-arg=HF_CLIENT_ID
